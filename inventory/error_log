@@ -1,0 +1,14 @@
+[17-Sep-2024 07:25:56 UTC] PHP Warning:  Undefined array key "message" in /home/bitsiwbg/thegoldenlotus.bitsitservices.net/inventory/codeLogin.php on line 24
+[02-Jun-2025 07:29:34 UTC] PHP Warning:  Undefined array key "message" in /home/bitsiwbg/thegoldenlotus.bitsitservices.net/inventory/codeLogin.php on line 24
+[02-Jun-2025 09:56:27 UTC] PHP Warning:  Undefined array key "message" in /home/bitsiwbg/thegoldenlotus.bitsitservices.net/inventory/codeLogin.php on line 24
+[02-Jun-2025 17:56:59 Asia/Singapore] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'datetime' in 'WHERE' in /home/bitsiwbg/thegoldenlotus.bitsitservices.net/inventory/inventory.php:90
+Stack trace:
+#0 /home/bitsiwbg/thegoldenlotus.bitsitservices.net/inventory/inventory.php(90): mysqli_query()
+#1 {main}
+  thrown in /home/bitsiwbg/thegoldenlotus.bitsitservices.net/inventory/inventory.php on line 90
+[02-Jun-2025 17:57:00 Asia/Singapore] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'datetime' in 'WHERE' in /home/bitsiwbg/thegoldenlotus.bitsitservices.net/inventory/inventory.php:90
+Stack trace:
+#0 /home/bitsiwbg/thegoldenlotus.bitsitservices.net/inventory/inventory.php(90): mysqli_query()
+#1 {main}
+  thrown in /home/bitsiwbg/thegoldenlotus.bitsitservices.net/inventory/inventory.php on line 90
+[04-Sep-2025 23:02:35 UTC] PHP Warning:  Undefined array key "account_id" in /home/bitsiwbg/thegoldenlotus.bitsitservices.net/inventory/header.php on line 9

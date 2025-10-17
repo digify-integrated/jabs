@@ -1,0 +1,293 @@
+<?php include 'header.php'; 
+
+?>
+
+<div class="container-xxl py-5 bg-dark mb-5" style="min-height: 100vh;">
+           
+ <!-- Menu Start -->
+ <div class="container-xxl py-5">
+            <div class="container" style="background-color: ghostwhite;">
+                 <div class="text-center wow"  >
+                    <h1 class="section-title ff-secondary text-center text-primary fw-normal">Transactions</h1>
+                     <h4 class="mb-1">&nbsp;</h1>
+                </div>
+                <div class="tab-class text-center wow">
+                
+               
+<?php
+/*
+STATUS
+0-unpaid
+1-paid
+2-cancel
+*/
+date_default_timezone_set('Asia/Singapore');
+$yesterday = date('Y-m-d 09:00:00', strtotime('-1 days')); 
+$startDate="";
+//$endDate = date('Y-m-d h:i:sa', strtotime(' -1 hours'));
+$endDate =  date('Y-m-d H:i:s');
+$date = date('Y-m-d ')." 00:00:00";
+$d = DateTime::createFromFormat('Y-m-d H:i:s', $date);
+$midnight = $d->getTimestamp();
+$timeNow= time();
+$diff = abs($midnight - $timeNow)/3600; ///hours
+if($diff >=6){
+   $startDate = date('Y-m-d ')." 09:00:00";//$now->toDateString() . " 10:00:00";
+   //date today
+}elseif( $diff <=4 ){   
+   $startDate = $yesterday;//->toDateString() . " 10:00:00"; 4am
+   //get date yesterday
+}else{
+   //OFF ito
+   $startDate = $endDate;
+}
+
+//$query = "select * from orders WHERE created_at BETWEEN '". $startDate . "' AND '" . $endDate . "' AND user_id  = '". $_SESSION['user_id'] ."'";
+//$query = "select * from  orders WHERE created_at BETWEEN '". $startDate . "' AND '" . $endDate . "' ";
+//var_dump($query);
+if(isset($_GET) && isset($_GET['r'])){
+//void
+    $query = "UPDATE orders SET status = 3 WHERE payment_reference='" . $_GET['r'] . "'";
+    $result = mysqli_query($conn,$query);
+
+    $query = "UPDATE payments SET payment_method_id = '1' WHERE payment_reference='" . $_GET['r'] . "'";
+    $result = mysqli_query($conn,$query);
+}
+if(isset($_GET) && isset($_GET['c'])){
+//cancel void
+    $query = "UPDATE orders SET status = 1 WHERE payment_reference='" . $_GET['c'] . "'";
+    $result = mysqli_query($conn,$query);
+
+    $query = "UPDATE payments SET payment_method_id = '0' WHERE payment_reference='" . $_GET['c'] . "'";
+    $result = mysqli_query($conn,$query);
+ 
+}
+$query = "select  payment_reference, table_id, status, created_at, user_id from  orders WHERE  user_id  = '". $_SESSION['user_id']."' AND created_at BETWEEN '". $startDate . "' AND '" . $endDate . "'  GROUP BY payment_reference" ;
+//var_dump($query); 
+$query_run = mysqli_query($conn, $query);
+        if(mysqli_num_rows($query_run) > 0){ ?>
+            <table id="report" class="table table-striped table-bordered" style="width:100%; "  border=1 >
+            <thead>
+                <tr>
+                    <th>Date Time</th>                
+                   <th style="width:15%;">Reference</th>    
+                    <th>Table</th>                
+                    <th>Status</th>   
+                    <th>&nbsp;</th>                
+                    <th>&nbsp;</th>                
+                    
+                </tr>
+            </thead>
+            <tbody>
+            <?php foreach($query_run as $a){ 
+
+                if($a['payment_reference'] != ""  && $a['created_at'] != ""){ //check if already paid
+                
+                $table_num = explode("_", $a['table_id']);
+                $query_table = "select name from table_category WHERE id = '".$table_num[0]. "'";
+                $query_run_table = mysqli_query($conn, $query_table);
+                $row_table = mysqli_fetch_array($query_run_table);
+                $status="";
+                if($a['status'] == 1){
+                    $status="<span style='color: green;'>Paid</span>";
+                }elseif($a['status'] == 2){
+                    $status="<span style='color: red;'>Cancelled</span>";
+                }elseif($a['status'] == 0){
+                    $status="<span style='color: blue;'>Unpaid</span>";
+                }elseif($a['status'] == 3){    
+                    $status="<span style='color: red;'>Void</span>";
+                } else{}
+
+                ?>
+                <tr>
+                <td><?= $a['created_at']; ?></td> 
+                <td><?= $a['payment_reference']; ?></td>                                                            
+                <td><?= $row_table['name'] . ' ' . $table_num[1]?></td>
+                <td><?= $status?></td>
+                
+                
+                
+                <?php
+                //urls
+                $urlOrder="#ViewOrders_".$a['table_id'] . "_" . $a['payment_reference'];
+                $url="printBill.php?id=".$a['table_id'] . "&r=" . $a['payment_reference'];
+                $urlVoid="?r=" . $a['payment_reference'];
+                $urlCVoid="?c=" . $a['payment_reference'];
+                ?>
+                <!-- VIEW ORDERS -->
+                
+                <td>
+                <a class="btn btn-info  " id="delete" href="<?php echo '#deleteTable'.$a['payment_reference']; ?>" data-toggle="modal" data-target="<?php echo '#deleteTable'.$a['payment_reference']; ?>">View Orders</a>
+               
+                                            <!--DELETE MODAL-->
+                                            <div class="modal fade" id="<?php echo 'deleteTable'.$a['payment_reference']; ?>" tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'> 
+                                                
+                                                        
+                                                        <div class='modal-dialog' role='document'>
+                                                        <div class='modal-content'>
+                                                            <div class='modal-header'>
+                                                             <h4 class='modal-title' id='exampleModalLabel'>Transaction # (<?php echo $a['payment_reference']; ?>)</h5>
+                                                            </div>
+                                                            <div class='modal-body'>
+                                                          <!-- ORDERS DETAILS -->
+                                                          <table style="width:100%;">
+                                                            <thead><th colspan="3">Orders</th>
+                                                            </thead>
+                                                            <tbody >
+                   
+                                                                        
+                                                        <?php
+                                                        $query_table = "select name from table_category WHERE id = '".$a['table_id']. "'";
+                                                        $query_run_table = mysqli_query($conn, $query_table);
+                                                        $row_table = mysqli_fetch_array($query_run_table);
+                                                        //var_dump($query_table);
+                                                        $dateTime ="";
+                                                        $cashier = "";
+                                                        $total_items=0;
+                                                        $discount=0;
+
+                                                            $query = "SELECT orders.user_id, orders.created_at as created_at,  products.name as product_name, order_details.quantity as quantity, products.price as price, orders.id as order_id, order_details.id as order_details_id FROM orders, order_details, products where products.id = order_details.product_id AND orders.id = order_details.order_id AND orders.payment_reference='".$a['payment_reference'] . "' AND user_id  = '". $_SESSION['user_id']."'";
+                                                        //echo $query;
+                                                        $query_run = mysqli_query($conn, $query);
+                                                        
+                                                        if(mysqli_num_rows($query_run) > 0){
+                                                            foreach($query_run as $b){ 
+                                                                $query_cashier = "SELECT name from users WHERE id = '" .$b['user_id']."'";
+                                                                //echo $query;
+                                                                $query_run_table = mysqli_query($conn, $query_cashier);
+                                                                $row_cashier = mysqli_fetch_array($query_run_table);
+                                                                
+
+                                                                $dateTime = $b['created_at'];
+                                                                $cashier = $row_cashier['name'];
+                                                                $subtotal = $b['price'] * $b['quantity'];
+                                                                $total_items = $total_items + $subtotal;
+                                                                    $query_pr = "SELECT * from payments WHERE payment_reference = '" .$a['payment_reference']."'";
+                                                                    $query_run_table = mysqli_query($conn, $query_pr);
+                                                                    $row_pr = mysqli_fetch_array($query_run_table);
+                                                                        $discount = $row_pr['discount'];
+                                                                    ?>
+                                                                    <tr>
+                                                                    <td style="width:10%; padding:0px"><?= $b['quantity']; ?> </td>                                
+                                                                    <td style="text-align:left;" style="width:70%; padding:0px"><?= $b['product_name']; ?></td>
+                                                                    <td style="width:20%; padding:0px"><?= number_format((float)$subtotal, 2, ".", ",");  ?></td> 
+                                                                    </tr>
+                                                                    <?php }  ?>     
+                                                                    </tbody>
+                                                                    </table>
+                                                                    
+                                                                    
+                                                                    <table style="width:100%;">
+                                                                    <tr>
+                                                                        <td style="text-align:right; padding:0px">SUBTOTAL:</td>
+                                                                        <td style="text-align: right; padding:0px">P <?= number_format((float)$total_items, 2, ".", ","); ?></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="text-align:right; padding:0px">SC:</td>
+                                                                        <td style="text-align: right; padding:0px">P <?= number_format((float)$total_items * 0.15, 2, ".", ",");?></td>
+                                                                    </tr>
+                                                                    
+                                                                    <tr>
+                                                                        <td style="text-align:right; padding:0px">Discount:</td>
+                                                                        <td style="text-align: right; color:red; padding:0px">P <?=  number_format((float)$discount, 2, ".", ","); ?></td>
+                                                                    </tr>
+                                                                    
+                                                                    <tr>
+                                                                    <td style="text-align:right; padding:0px"><b>AMOUNT DUE:</b></td>
+                                                                        <td style="text-align: right; padding:0px"><b>P <?=  number_format((float)$total_items + ($total_items * 0.15)-$discount, 2, ".", ","); ?></b></td>
+                                                                    </tr>
+                                                                    </table>
+
+                                                                    <table style="width:100%;">
+                                                                    
+                                                                    <tr>
+                                                                        <td style="text-align:right; padding:0px">VAT Sales:</td>
+                                                                        <td style="text-align: right; padding:0px">P <?=  number_format((float)$total_items * 0.88, 2, ".", ","); ?></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td style="text-align:right; padding:0px">VAT Amount:</td>
+                                                                        <td style="text-align: right; padding:0px">P <?=  number_format((float)$total_items * 0.12, 2, ".", ","); ?></td>
+                                                                    </tr>
+                                                                    
+                                                                    <tr>
+                                                                        <td style="text-align:right;vertical-align:top; padding:0px">Payment/s: </td>
+                                                                        <td style="text-align: right; padding:0px"><?php
+                                                                    //print payment methods here
+                                                                    //query payment_method tbale here
+                                                                    $query = "SELECT payment_method_id, amount from payment_methods WHERE table_id = '" .$a['table_id']."' AND payment_reference = '".$a['payment_reference'] . "'";
+                                                                    //var_dump($query);
+                                                                    $query_run = mysqli_query($conn, $query);
+                                                                    if(mysqli_num_rows($query_run) > 0){
+                                                                        foreach($query_run as $b){ 
+                                                                            if($b['payment_method_id'] == 1){ echo "Cash: P " . number_format((float)$b['amount'], 2, ".", ",") . "<br>";}
+                                                                            if($b['payment_method_id'] == 2){ echo "Gcash: P " . number_format((float)$b['amount'], 2, ".", ",") . "<br>";}
+                                                                            if($b['payment_method_id'] == 3){ echo "Card: P " . number_format((float)$b['amount'], 2, ".", ",") . "<br>";}
+                                                                            if($b['payment_method_id'] == 4){ echo "ENT: P " . number_format((float)$b['amount'], 2, ".", ",") . "<br>";}
+                                                                            
+                                                                        }}
+                                                                    ?></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                    <td style="text-align: right; padding:0px"><b>Change:</b></td>
+                                                                    
+                                                                    <td style="text-align: right; padding:0px"><b>P <?= number_format((float)$row_pr['change'], 2, ".", ","); ?></b></td>
+                                                                    
+                                                            
+                                                                    
+                                                                    </table>
+                                                                    <table style="width:100%;">
+                                                                    <tr>
+                                                                    <td style="text-align:left;vertical-align:top;">
+                                                                    <br><b>Table # </b><?php echo $row_table['name'] ." ". $table_num[1];?> </b>
+                                                                    <br><b>Date Time: </b><?php echo $dateTime;?>
+                                                                    <br><b>Cashier: </b><?php echo $cashier;?>  
+                                                                    </td>
+                                                                    </tr>
+
+                                                                </table>
+                                                                
+                                                                                                                    <!--END ORDER DETAILS -->
+                                                                                                
+                                                                                                    </div>
+                                                                                                                    <div class='modal-footer'>
+                                                                                                                    <button class='btn btn-dark  ' type='button' data-dismiss='modal'>Close
+                                                                                                                    </button>
+                                                                                                                    
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                                </div>
+                                                                                                        
+                                                                                                            </div>
+                                                                                                        <!--DELETE MODAL--->
+                                                                    
+                <td>
+               
+                
+
+                <?php if($a['status'] != 3){ ?>
+                <a class="btn btn-dark  " style="background-color:black;" onclick="window.open('<?=$url?>','print_popup','width=1000,height=800');">Print Receipt</a>
+                
+                <a class="btn btn-danger " onclick="location.href='<?=$urlVoid?>';">Void</a>
+                <?php }
+                 if($a['status'] == 3){ ?>
+                <a class="btn " style=";background-color:#ffc107;border-color:#ffc107;" onclick="location.href='<?=$urlCVoid?>';">Undo Void</a>
+                <?php } ?>
+                
+                </td> 
+
+
+
+                          <?php }
+                                        }
+                                    }
+                                   // else
+                                   // {
+                                       // echo "<h5> No Record Found </h5>";
+                                    }
+                                ?>
+                                </tbody>
+                                </table>
+                                <?php// }     ?>
+
+
+<?php include 'footer.php'; ?>

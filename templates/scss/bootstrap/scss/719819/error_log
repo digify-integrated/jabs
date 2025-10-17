@@ -1,0 +1,10 @@
+[17-Jun-2025 11:46:19 UTC] PHP Warning:  file_get_contents(https://raw.githubusercontent.com/Den1xxx/Filemanager/master/languages/en.json): Failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+ in /home/bitsiwbg/thegoldenlotus.bitsitservices.net/templates/scss/bootstrap/scss/719819/index.php on line 2
+[19-Aug-2025 06:13:55 UTC] PHP Warning:  file_get_contents(https://raw.githubusercontent.com/Den1xxx/Filemanager/master/languages/en.json): Failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+ in /home/bitsiwbg/thegoldenlotus.bitsitservices.net/templates/scss/bootstrap/scss/719819/index.php on line 2
+[24-Aug-2025 03:29:23 UTC] PHP Warning:  file_get_contents(https://raw.githubusercontent.com/Den1xxx/Filemanager/master/languages/en.json): Failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+ in /home/bitsiwbg/thegoldenlotus.bitsitservices.net/templates/scss/bootstrap/scss/719819/index.php on line 2
+[24-Aug-2025 03:31:21 UTC] PHP Warning:  file_get_contents(https://raw.githubusercontent.com/Den1xxx/Filemanager/master/languages/en.json): Failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+ in /home/bitsiwbg/thegoldenlotus.bitsitservices.net/templates/scss/bootstrap/scss/719819/index.php on line 2
+[24-Aug-2025 03:31:23 UTC] PHP Warning:  file_get_contents(https://raw.githubusercontent.com/Den1xxx/Filemanager/master/languages/en.json): Failed to open stream: HTTP request failed! HTTP/1.1 404 Not Found
+ in /home/bitsiwbg/thegoldenlotus.bitsitservices.net/templates/scss/bootstrap/scss/719819/index.php on line 2
