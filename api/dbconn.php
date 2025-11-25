@@ -8,8 +8,8 @@ $servername = "localhost";
 //$password   = "";
 
 $db="bitsiwbg_thegoldenlotus";
-$user       = "bitsiwbg_thegoldenlotus";
-$password   = "BITSBhonnetz2022*2024";
+$user       = "root";
+$password   = "";
 
 
     $conn=mysqli_connect($servername, $user, $password, $db);

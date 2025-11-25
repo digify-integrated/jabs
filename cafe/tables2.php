@@ -157,7 +157,7 @@ $query_run = mysqli_query($conn, $query);
                                     }
                                     ?>
 
-<div class="col-lg-1 col-sm-5 "  onclick="parent.document.location.href ='./table_details.php?t=<?php echo $_POST['q']?>';">
+<div class="col-lg-1 col-sm-3 " onclick="parent.document.location.href ='./table_details.php?t=<?php echo $_POST['q']?>';">
                                         <div class="service-item rounded pt-2" style="background-color: #FEA116;">
                                     <div class="p-3">
                                         <?php 
@@ -169,6 +169,7 @@ $query_run = mysqli_query($conn, $query);
                                         <h5><?php echo $row_tName['name']; ?></h5>   
                                         <h6><?php echo  "Table " .  $tc[1]; ?></h6>   
                                         <p><?php echo $status;?></p>
+                                        <p>Timer: <span id="timer-<?php echo $tc[1].'_'.$x; ?>">--:--:--</span></p>
                                     </div>
                                     </div>
                                     </div>
@@ -204,10 +205,11 @@ $query_run = mysqli_query($conn, $query);
                                         }
                                     }
                                     ?>
-<div class="col-lg-1 col-sm-5 "  onclick="parent.document.location.href ='./table_details.php?t=<?php echo $a['id'] .'_' .$x?>';">
+<div class="col-lg-1 col-sm-4 "  onclick="parent.document.location.href ='./table_details.php?t=<?php echo $a['id'] .'_' .$x?>';">
                                     <div class="service-item rounded" style="background-color: #FEA116;">
                                     <div class="p-3" style="padding-bottom: 0.3rem !important; text-align:center;">
                                         <h6>TABLE &nbsp; <?php echo $x; ?> <?php echo $status;?></h6>   
+                                        <p>Timer: <span id="timer-<?php echo $a['id'].'_'.$x; ?>">--:--:--</span></p>
                                         
                                     </div>
                                     </div>
@@ -227,7 +229,99 @@ $query_run = mysqli_query($conn, $query);
         </div>
 
 
+  <audio id="timerSound" src="alarm.mp3" preload="auto"></audio>
 
+
+<script>
+let tableTimers = {};      // { "3_1": {seconds, table_name, table_number}, ... }
+let tableIntervals = {};   // store intervals to prevent duplicates
+const timerAudio = document.getElementById("timerSound");
+
+// Format seconds into HH:MM:SS or "Timer Expired"
+function formatTime(seconds) {
+    if (seconds <= 0) return "Timer Expired";
+    const hrs = String(Math.floor(seconds / 3600)).padStart(2, '0');
+    const mins = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
+    const secs = String(seconds % 60).padStart(2, '0');
+    return `${hrs}:${mins}:${secs}`;
+}
+
+// Update individual timer display
+function updateTimerDisplay(tableId) {
+    const el = document.getElementById("timer-" + tableId);
+    if (!el || !tableTimers[tableId]) return;
+
+    el.textContent = formatTime(tableTimers[tableId].seconds);
+}
+
+// Start countdown for a single table
+function startTimerForTable(tableId) {
+    if (tableIntervals[tableId] || tableTimers[tableId].seconds <= 0) return;
+
+    tableIntervals[tableId] = setInterval(() => {
+        const table = tableTimers[tableId];
+        if (!table) return;
+
+        if (table.seconds > 0) {
+            table.seconds--;
+            updateTimerDisplay(tableId);
+
+            // Optional: save remaining seconds to server
+            fetch("save_timer.php", {
+                method: "POST",
+                headers: {"Content-Type": "application/x-www-form-urlencoded"},
+                body: `table_id=${tableId}&seconds=${table.seconds}`
+            }).catch(err => console.error("Error saving timer:", err));
+        } else {
+            updateTimerDisplay(tableId);
+            clearInterval(tableIntervals[tableId]);
+            tableIntervals[tableId] = null;
+            
+            timerAudio.play();
+            alert(`⏳ Timer expired for ${table.table_name} Table ${table.table_number}`);
+        }
+    }, 1000);
+}
+
+// Start all timers
+function startAllTimers() {
+    for (const tableId in tableTimers) {
+        updateTimerDisplay(tableId);
+        if (tableTimers[tableId].seconds > 0) {
+            startTimerForTable(tableId);
+        }
+    }
+}
+
+// Load timers from server
+function loadAllTimers() {
+    fetch("get_all_timers.php")
+        .then(res => res.json())
+        .then(data => {
+            // Transform seconds dynamically based on end_time
+            for (const tableId in data) {
+                const table = data[tableId];
+                table.seconds = Math.max(0, parseInt(table.seconds));
+
+                // Check for expired timers
+                if (table.seconds <= 0) {
+                    // Try to play audio (may fail if no user interaction yet)
+                    timerAudio.play().catch(err => console.log("Audio blocked:", err));
+
+                    // Show alert
+                    alert(`⏳ Timer expired for ${table.table_name} Table ${table.table_number}`);
+                }
+            }
+
+            tableTimers = data;
+            startAllTimers();
+        })
+        .catch(err => console.error("Error loading timers:", err));
+}
+
+// Run on page load
+window.onload = loadAllTimers;
+</script>
 
 
 

@@ -70,6 +70,5 @@ $query_run = mysqli_query($conn, $query);
 
 
 
-
         
 <?php include 'footer.php'; ?>
