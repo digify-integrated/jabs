@@ -3,13 +3,13 @@
         </div>
         </div></div></div>
        <!-- Footer Start -->
-        <div class="container-fluid bg-dark text-light footer mt-0 wow"   style="    margin-top: -50px !important;">
+        <div class="container-fluid bg-dark text-light footer mt-0 wow" style="margin-top: -50px !important;">
             
             <div class="container">
                 <div class="copyright">
                     <div class="row">
                         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="#"></a>, All Right Reserved. 
+                            &copy; BITS IT Services, All Right Reserved. 
 							
                         </div>
                        
@@ -17,10 +17,7 @@
                 </div>
             </div>
         </div>
-        <!-- Footer End -->
-
-
-        <!-- Back to Top -->
+        
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
 

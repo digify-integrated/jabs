@@ -20,7 +20,7 @@ if(isset($_SESSION) && $_SESSION['account_id'] != NULL){
 
 <head>
     <meta charset="utf-8">
-    <title>Jab's Cafe</title>
+    <title>BITS IT Services</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -307,7 +307,7 @@ function buttonProductSubCategory() {
         <div class="container-xxl position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
                 <a href="../index.php" class="navbar-brand p-0">
-                    <h1 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>Jab's Cafe</h1>
+                    <h1 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>BITS IT Services</h1>
                     <!-- <img src="img/logo.png" alt="Logo"> -->
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">

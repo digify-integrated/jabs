@@ -20,7 +20,7 @@ if(isset($_SESSION) && $_SESSION['user_id'] != NULL){
 
 <head>
     <meta charset="utf-8">
-    <title>Jab's Cafe</title>
+    <title>BITS IT Services</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -320,7 +320,7 @@ function buttonProductSubCategory() {
 </head>
 
 <body >
-    <div class="container-xxl bg-white p-0">
+    <div class="bg-dark p-0">
         <!-- Spinner Start -->
     
         <!--TO DO REMOVE THIS ON LIVE
@@ -333,29 +333,23 @@ function buttonProductSubCategory() {
 
 
         <!-- Navbar & Hero Start -->
-        <div class="container-xxl position-relative p-0">
+        <div class="position-relative p-2">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
                 <a href="../index.php" class="navbar-brand p-0">
-                    <h1 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>Jab's Cafe</h1>
+                    <h1 class="text-primary m-0"><i class="fa fa-diagram-project me-3"></i>BITS IT Services</h1>
                     <!-- <img src="img/logo.png" alt="Logo"> -->
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="fa fa-bars"></span>
                 </button>
-                <div class="collapse navbar-collapse navbar-nav ms-auto py-1 pe-4" id="navbarCollapse">
+                <div class="collapse navbar-collapse navbar-nav ms-auto py-1 pt-2 pe-4" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-1 pe-4">
                     &nbsp;
                         
                     </div>
-                <?php 
-                
-                //if(isset($_SESSION) && isset($_SESSION['usertype'])){?>
                 
                     <a href="tables.php" class="btn btn-primary py-2 px-4 bg-dark">Tables</a>&nbsp;
                     <a href="sales_transactions.php" class="btn btn-primary py-2 px-4 bg-dark">Transactions</a>&nbsp;
-                   <!-- <a href="" class="btn btn-primary py-2 px-4 bg-dark">Order</a>&nbsp;
-                    <a href="" class="btn btn-primary py-2 px-4 bg-dark">Payments</a>&nbsp;
-                    <a href="" class="btn btn-primary py-2 px-4 bg-dark">Menu</a>&nbsp;-->
                     <a href="inventory.php" class="btn btn-primary py-2 px-4 bg-dark">Inventory</a>&nbsp;
                     <a href="daily_report.php" class="btn btn-primary py-2 px-4 bg-dark">EOD</a>&nbsp;
                     <a href="settings.php" class="btn btn-primary py-2 px-4 bg-dark">Settings</a>&nbsp;

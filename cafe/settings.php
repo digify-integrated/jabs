@@ -1,10 +1,10 @@
 <?php include 'header.php'; ?>
 
-<div class="container-xxl py-5 bg-dark mb-5" style="min-height: 100vh;">
+<div class="py-5 bg-dark mb-5" style="min-height: 100vh;">
                     
  <!-- Menu Start -->
- <div class="container-xxl py-5">
-            <div class="container" style="background-color: ghostwhite;">
+ <div>
+            <div class="ps-5 pe-5 pt-2" style="background-color: ghostwhite;">
                  <div class="text-center wow"  >
                     <h1 class="section-title ff-secondary text-center text-primary fw-normal">Settings</h1>
                      <h4 class="mb-1">&nbsp;</h1>

@@ -20,7 +20,7 @@ require '../api/dbconn.php';
 
 <head>
     <meta charset="utf-8">
-    <title>Jab's Cafe</title>
+    <title>BITS IT Services</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -140,7 +140,7 @@ $query_run = mysqli_query($conn, $query);
 
 
                             <div id="tabSearch"  class="tab-pane fade show p-0 active">
-                            <div class="row g-4" style="--bs-gutter-y: 0.3rem!important;--bs-gutter-x: 0.3rem!important;">
+                            <div class="row g-4 w-100" style="--bs-gutter-y: 0.3rem!important;--bs-gutter-x: 0.3rem!important;">
                                 <?php 
                                 //for ($x = 1; $x <= $a['table_counts']; $x++) {
                                     //check if available or not
@@ -157,7 +157,7 @@ $query_run = mysqli_query($conn, $query);
                                     }
                                     ?>
 
-<div class="col-lg-1 col-sm-3 " onclick="parent.document.location.href ='./table_details.php?t=<?php echo $_POST['q']?>';">
+<div class="col-lg-3" style="cursor:pointer" onclick="parent.document.location.href ='./table_details.php?t=<?php echo $_POST['q']?>';">
                                         <div class="service-item rounded pt-2" style="background-color: #FEA116;">
                                     <div class="p-3">
                                         <?php 
@@ -167,9 +167,9 @@ $query_run = mysqli_query($conn, $query);
                                         $row_tName = mysqli_fetch_array($query_run_tName);
                                         ?>
                                         <h5><?php echo $row_tName['name']; ?></h5>   
-                                        <h6><?php echo  "Table " .  $tc[1]; ?></h6>   
-                                        <p><?php echo $status;?></p>
-                                        <p>Timer: <span id="timer-<?php echo $tc[1].'_'.$x; ?>">--:--:--</span></p>
+                                        <h4><?php echo  "Table " .  $tc[1]; ?></h4>
+                                        <h5><?php echo $status;?></h5>
+                                        <h5 style="color:#000;"><b>Remaining Time: <br/><span id="timer-<?php echo $tc[1].'_'.$x; ?>" class="text-danger">--:--:--</span></b></h5>
                                     </div>
                                     </div>
                                     </div>
@@ -186,7 +186,7 @@ $query_run = mysqli_query($conn, $query);
                     <?php if(mysqli_num_rows($query_run) > 0){
                         foreach($query_run as $a){?>
                             <!--<div id="tab-<?php echo $a['id']?>"  class="tab-pane fade show p-0">-->
-                            <div class="row g-4" style="--bs-gutter-y: 0.3rem!important;--bs-gutter-x: 0.3rem!important;">
+                            <div class="row g-4 w-100" style="--bs-gutter-y: 0.3rem!important;--bs-gutter-x: 0.3rem!important;">
                                 <?php 
                                 for ($x = 1; $x <= $a['table_counts']; $x++) {
                                     //check if available or not
@@ -205,11 +205,12 @@ $query_run = mysqli_query($conn, $query);
                                         }
                                     }
                                     ?>
-<div class="col-lg-1 col-sm-4 "  onclick="parent.document.location.href ='./table_details.php?t=<?php echo $a['id'] .'_' .$x?>';">
+                        <div class="col-lg-3" style="cursor:pointer" onclick="parent.document.location.href ='./table_details.php?t=<?php echo $a['id'] .'_' .$x?>';">
                                     <div class="service-item rounded" style="background-color: #FEA116;">
                                     <div class="p-3" style="padding-bottom: 0.3rem !important; text-align:center;">
-                                        <h6>TABLE &nbsp; <?php echo $x; ?> <?php echo $status;?></h6>   
-                                        <p>Timer: <span id="timer-<?php echo $a['id'].'_'.$x; ?>">--:--:--</span></p>
+                                        <h4>TABLE &nbsp; <?php echo $x; ?></h4>
+                                        <h5><?php echo $status;?></h5>
+                                        <h5 style="color:#000;"><b>Remaining Time: <br/> <span id="timer-<?php echo $a['id'].'_'.$x; ?>" class="text-danger">--:--:--</span></b></h5>
                                         
                                     </div>
                                     </div>

@@ -157,11 +157,11 @@ if ($payments_row && isset($payments_row['total'])) {
 </head>
 <body>
 <div class="ticket">
-    <p class="centered"><img src="../templates/img/logo2.png" alt="Logo" style="width:60%"></p>
+    <!--<p class="centered"><img src="../templates/img/logo2.png" alt="Logo" style="width:60%"></p>
     <p style="text-align:center;font-size:13px">
         MAHARLIKA HIGHWAY, LOMBOY, TALAVERA, NUEVA ECIJA<br>
         TIN NO: 490-693-381-00000
-    </p>
+    </p>-->
 
     <?php if (mysqli_num_rows($items_res) > 0): ?>
         <?php // Re-fetch first row to get date/cashier if not set above (defensive) ?>

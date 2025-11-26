@@ -55,9 +55,9 @@ $query = "
 $query_run = mysqli_query($conn, $query);
 ?>
 
-<div class="container-xxl py-5 bg-dark mb-5" style="min-height: 100vh;">
-    <div class="container-xxl py-5">
-        <div class="container" style="background-color: ghostwhite;">
+<div class="py-5 bg-dark mb-5" style="min-height: 100vh;">
+    <div>
+        <div class="ps-5 pe-5 pt-2" style="background-color: ghostwhite;">
             <div class="text-center">
                 <h1 class="section-title ff-secondary text-center text-primary fw-normal">Transactions</h1>
                 <h4 class="mb-1">&nbsp;</h4>
@@ -67,12 +67,12 @@ $query_run = mysqli_query($conn, $query);
                 <table id="report" class="table table-striped table-bordered" style="width:100%;" border="1">
                     <thead>
                         <tr>
-                            <th>Date Time</th>
-                            <th style="width:15%;">Reference</th>
-                            <th>Table</th>
-                            <th>Status</th>
-                            <th>User</th>
-                            <th>Actions</th>
+                            <th class="text-center">Date Time</th>
+                            <th class="text-center" style="width:15%;">Reference</th>
+                            <th class="text-center">Table</th>
+                            <th class="text-center">Status</th>
+                            <th class="text-center">User</th>
+                            <th class="text-center">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -100,15 +100,15 @@ $query_run = mysqli_query($conn, $query);
                                 ?>
 
                                 <tr>
-                                    <td><?= $a['created_at']; ?></td>
-                                    <td><?= $a['payment_reference']; ?></td>
+                                    <td class="text-center"><?= $a['created_at']; ?></td>
+                                    <td class="text-center"><?= $a['payment_reference']; ?></td>
                                     <td><?= $row_table['name'] . ' ' . $table_num[1]; ?></td>
                                     <td><?= $status; ?></td>
                                     <td><?= $row_cashier['name']; ?></td>
                                     <td>
                                         <?php if ($a['status'] != 3): ?>
                                             <a class="btn btn-dark" onclick="window.open('<?= $urlPrint ?>','print_popup','width=1000,height=800');">Print Receipt</a>
-                                            <a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#<?= $modalId; ?>">VOID</a>
+                                            <a class="btn btn-danger" data-toggle="modal" data-target="#<?= $modalId; ?>">VOID</a>
 
                                             <div class="modal fade" id="<?= $modalId; ?>" tabindex="-1" role="dialog" aria-hidden="true">
                                                 <div class="modal-dialog" role="document">

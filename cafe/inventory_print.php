@@ -188,9 +188,9 @@ th.price {
     <div class="ticket">
     
             <p class="centered">
-            <b>JAB's CAFE</b><br>
+            <b>BITS IT Services</b><br><!--
 MAHARLIKA HIGHWAY, LOMBOY, TALAVERA, NUEVA ECIJA<br>
-TIN NO: 490-693-381-00000
+TIN NO: 490-693-381-00000-->
     </p>
                 
                 <?php $now = new \DateTime('now', new DateTimeZone('Asia/Tokyo')); 

@@ -75,21 +75,21 @@ if(isset($_GET["action"])){
             color:  black!important;
         }
     </style>
-<div class="container-xxl py-5 bg-dark  mb-5" style="min-height: 100vh;">
+<div class="py-5 bg-dark  mb-5" style="min-height: 100vh;">
            
         <!-- Team Start -->
-        <div class="container-xxl pt-5 pb-3">
-            <div class="container">
+        <div class="pt-5 pb-3">
+            <div class="ps-5 pe-5 pt-2">
              <div class="text-center wow"  >
                      <h1 class="section-title ff-secondary text-center text-primary fw-normal"> Order/s</h1>
                     <!--<h1 class="mb-5">Most Popular Items</h1>-->
                 </div>
 
 
-                <div class="container-xxl py-1 bg-white mb-5">
-                <div class="container my-0 py-1">
+                <div class="py-1 bg-white mb-5">
+                <div class="ps-5 pe-5 pt-2 my-0 py-1">
                     <div class="row  g-5">
-                        <div class="col-lg-6 text-center text-lg-start" >
+                        <div class="col-lg-7 text-center text-lg-start" >
                          <div class="text-center wow"  >
                          <h1 class="section-title ff-secondary text-center text-primary fw-normal">Food Menu</h1>
                         </div>
@@ -228,7 +228,7 @@ if(mysqli_num_rows($query_run) > 0){
 <!--END POS MENU -->
 
                             <?php // include 'pos_menu.php'; ?>
-                            <div class="col-lg-6 text-center text-lg-end overflow-hidden">
+                            <div class="col-lg-5 text-center text-lg-end overflow-hidden">
                          <div class="text-center wow"  >
                               <h1 class="section-title ff-secondary text-center text-primary fw-normal">Order Details</h1>
                         </div>

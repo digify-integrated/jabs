@@ -16,7 +16,7 @@ if(isset($_SESSION)){
 
 <head>
     <meta charset="utf-8">
-    <title>Jab's Cafe</title>
+    <title>BITS IT Services</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -83,83 +83,69 @@ if(isset($_SESSION)){
 
 </head>
 
-<body >
-    <div class="container-xxl bg-white p-0">
-        <!-- Spinner Start -->
-        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only">Loading...</span>
+<body>
+     <div class="bg-white p-0 h-100">
+
+        <div class="py-5 bg-dark hero-header min-vh-100 d-flex flex-column">
+
+            <!-- Header -->
+            <div class="text-center w-100 mb-0">
+                <h1 class="text-primary m-0">
+                    <i class="fa fa-diagram-project me-3"></i>BITS IT Services
+                </h1>
             </div>
-        </div>
-        <!-- Spinner End -->
 
+            <!-- Centered Form Wrapper -->
+            <div class="container flex-grow-1 d-flex justify-content-center align-items-center">
+                <div class="row w-100 justify-content-center">
+                    <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+                        <form method="POST" action="codeLogin.php">
 
-        <!-- Navbar & Hero Start -->
-        <div class="container-xxl position-relative p-0">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
-                <a href="../index.php" class="navbar-brand p-0">
-                    <h1 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>Jab's Cafe</h1>
-                    <!-- <img src="img/logo.png" alt="Logo"> -->
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                    <span class="fa fa-bars"></span>
-                </button>
-                <div class="collapse navbar-collapse navbar-nav ms-auto py-1 pe-4" id="navbarCollapse">
-                    <div class="navbar-nav ms-auto py-1 pe-4">
-                    &nbsp;
-                        
-                    </div>
-                
-                
-                </div>
-                
-            </nav>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" type="text" name="username" required />
+                                <label>User</label>
+                            </div>
 
-        <!-- Navbar & Hero End -->
+                            <div class="form-floating mb-3">
+                                <input class="form-control" type="password" name="password" required />
+                                <label>Password</label>
+                            </div>
 
+                            <?php if(isset($_SESSION['message'])){ 
+                                $message = $_SESSION['message'];   
+                                $status = explode("<>", $message); ?>
+                                <div class="alert alert-<?php echo $status[0]; ?> alert-dismissible fade show" role="alert">
+                                    <?php echo $status[1]; ?>!
+                                </div>
+                            <?php unset($_SESSION['message']); } ?>
 
+                            <div class="text-center">
+                                <button class="btn btn-primary py-3 px-5 w-100" type="submit">
+                                    Login
+                                </button>
+                            </div>
 
-            <div class="container-xxl py-5 bg-dark hero-header mb-5"  style="min-height: 100vh;">
-                <div class="container my-5 py-5">
-                    <div class="row align-items-center g-5">
-                        <div class="col-lg-6 text-center text-lg-start">
-                            <h1 class="display-3 text-white animated slideInLeft"></h1>
-                             <?php if(isset($_SESSION['message'])){
-                      $message = $_SESSION['message'];   
-                      $status= explode("<>", $message);?>
-                <div class="alert alert-<?php echo $status[0]?> alert-dismissible fade show" role="alert">
-                <?php echo $status[1];?>!
-                             </div>
-                <?php 
-            unset($_SESSION['message']);
-                } ?>
-                 <div class="text-center wow fadeInUp" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
-                    <h1 class="section-title ff-secondary text-center text-primary fw-normal">Cafe</h1>
-                </div>
-                            <p> <form method="POST" action="codeLogin.php">
-                                                <div class="form-floating mb-3">
-                                                    <input class="form-control" type="text" name="username" required />
-                                                    <label for="inputUsername">User</label>
-                                                </div>
-                                                <div class="form-floating mb-3">
-
-                                                    <input class="form-control" type="password" name="password" required id="myInput" value="" />
-                                                    <label for="inputPassword" type="hidden">Password</label>
-                                                    
-                                                </div>
-                                                <div>  
-                                                <button class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft"  type="submit">Login</button>
-                                                </div>
-                                            </form> </p>
-                        </div>
-                        <div class="col-lg-6 text-center text-lg-end overflow-hidden">
-                        
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <!-- Navbar & Hero End -->
 
-        <?php include 'footer.php'; ?>
+        </div>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="../templates/lib/wow/wow.min.js"></script>
+        <script src="../templates/lib/easing/easing.min.js"></script>
+        <script src="../templates/lib/waypoints/waypoints.min.js"></script>
+        <script src="../templates/lib/counterup/counterup.min.js"></script>
+        <script src="../templates/lib/owlcarousel/owl.carousel.min.js"></script>
+        <script src="../templates/lib/tempusdominus/js/moment.min.js"></script>
+        <script src="../templates/lib/tempusdominus/js/moment-timezone.min.js"></script>
+        <script src="../templates/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="../templates/js/main.js"></script>
+</body>
+
+</html>
