@@ -7,6 +7,7 @@ $id= $_POST["id"];
 $name= $_POST["txtName"];
 $email= $_POST["txtEmail"];
 $password= $_POST["txtPassword"];
+$can_void= $_POST["can_void"];
 $del = $_GET["del"];
 
 //array(5) { ["id"]=> string(0) "" ["txtName"]=> string(1) "a" ["txtEmail"]=> string(1) "a" ["txtPassword"]=> string(1) "a" ["addbtn"]=> string(0) "" }
@@ -31,7 +32,7 @@ if($del == 1){
 }else{
     if($id == ""){//add
         if($result-> num_rows == 0){
-            $query = "INSERT INTO users (name, email, password) VALUES ('$name', '$email', '$password')";
+            $query = "INSERT INTO users (name, email, password, can_void) VALUES ('$name', '$email', '$password', '$can_void')";
             $result = mysqli_query($conn,$query);
             if($result)
             {
@@ -54,7 +55,14 @@ if($del == 1){
         //if($row_name['email'] == $email){ //check if name exits in table
         //    $_SESSION['message'] = "danger<>Cannot Update. Already Exists.";
         //}else{
-            $query = "UPDATE users SET name = '$name', email = '$email', password='$password'  WHERE id='$id'";
+            if(empty($password)){
+                 $query = "UPDATE users SET name = '$name', email = '$email', can_void='$can_void'  WHERE id='$id'";
+            }
+            else{
+                $query = "UPDATE users SET name = '$name', email = '$email', password='$password', can_void='$can_void'  WHERE id='$id'";
+            }
+
+           
             $result = mysqli_query($conn,$query);
             if($result)
             {

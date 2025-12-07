@@ -205,7 +205,8 @@ $row_table = mysqli_fetch_array($query_run_table);
                     </div>  
 
                      <div class="modal fade" id="PayOrder" tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'> 
-                     <form action="codePayOrder.php" method="POST"  target="print_popup" onsubmit="window.open('about:blank','print_popup','width=1000,height=800');location.reload();">
+                            <form action="codePayOrder.php" method="POST"  target="print_popup" onsubmit=" window.open('about:blank','print_popup','width=1000,height=800');
+    setTimeout(() => location.reload(), 100);">
                                   <div class='modal-dialog' role='document'>
                                   <div class='modal-content'>
                                       <div class='modal-header'>
@@ -286,28 +287,28 @@ $row_table = mysqli_fetch_array($query_run_table);
                                     <tr>
                                         <td style="width:30%;">&nbsp;</td>
                                         <td style=" width:70%; text-align: left;vertical-align: top;" colspan="2">
-                                        Cash:&nbsp;&nbsp;&nbsp;<input  step="any" type="number" id="cash_amount" name="cash_amount" placeholder="Amount" style="width:75%;">
+                                        Cash:&nbsp;&nbsp;&nbsp;<input  step="any" type="number" id="cash_amount" name="cash_amount" placeholder="Amount" style="width:75%;" value="0">
                                     </td>
                                     </tr>
                                     <tr>
                                         <td style="width:20%;">&nbsp;</td>
                                         <td style=" width:10%; text-align: left;vertical-align: top;">GCash:</td>                                        
                                         <td style=" width:70%; text-align: left;vertical-align: top;">
-                                        <input  step="any" type="number" id="gcash_amount" name="gcash_amount"  placeholder="Amount" style="width:45%;">
+                                        <input  step="any" type="number" id="gcash_amount" name="gcash_amount"  placeholder="Amount" style="width:45%;" value="0">
                                         <input type="text" id="gcash_reference" name="gcash_reference"  placeholder="Gcash Reference" style="width:45%;"></td>
                                     </tr>
                                     <tr>
                                         <td style="width:20%;">&nbsp;</td>
                                         <td style=" width:10%; text-align: left;vertical-align: top;">Card:</td>                                        
                                         <td style=" width:70%; text-align: left;vertical-align: top;">
-                                        <input  step="any" type="number" id="card_amount" name="card_amount"  placeholder="Amount" style="width:45%;">
+                                        <input  step="any" type="number" id="card_amount" name="card_amount"  placeholder="Amount" style="width:45%;" value="0">
                                         <input type="text" id="card_reference" name="card_reference"  placeholder="Card Reference" style="width:45%;"></td>
                                     </tr>
                                     <tr>
                                         <td style="width:20%;">&nbsp;</td>
                                         <td style=" width:10%; text-align: left;vertical-align: top;">ENT:</td>                                        
                                         <td style=" width:70%; text-align: left;vertical-align: top;">
-                                        <input  step="any" type="number" id="ent_amount" name="ent_amount"  placeholder="Amount" style="width:45%;">
+                                        <input  step="any" type="number" id="ent_amount" name="ent_amount"  placeholder="Amount" style="width:45%;" value="0">
                                         <input type="text" id="ent_reference" name="ent_reference"  placeholder="ENT Reference" style="width:45%;"></td>
                                     </tr>
                                     </table>
@@ -315,16 +316,16 @@ $row_table = mysqli_fetch_array($query_run_table);
                                     <table style="width:100%;" >
                                     <tr>
                                         <td style="text-align: right;"><b>CHANGE:</b></td>
-                                        <td style="text-align: left;"><input name="change" id="change" class="text-center form-control-lg mb-2"  style=" font-size:3rem; width:100%;background-color: gray;border: none;" min="0"  type="text" placeholder="0" readonly/></td>
+                                        <td style="text-align: left;"><input name="change" id="change" class="text-center form-control-lg mb-2"  style=" font-size:3rem; width:100%;background-color: gray;border: none;" min="0"  type="text" placeholder="0"  value="<?= ($total_items + ($total_items * 0.10)) * -1;?>" readonly/></td>
                                     </tr>
                                     </table>
             
                                         
                                       </div>
                                       <div class='modal-footer'>
-                                      <button class='btn btn-dark  ' type='button' data-dismiss='modal'>Cancel
+                                      <button class='btn btn-dark' type='button' data-dismiss='modal'>Cancel
                                       </button>
-                                          <input type="submit" class="btn btn-primary  " value="Pay Order">
+                                          <input type="submit" class="btn btn-primary" value="Pay Order">
                                       </div>
                                   </div>
                                   </div>

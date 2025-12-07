@@ -12,7 +12,7 @@ $timeNow = time();
 $diff = abs($midnight - $timeNow) / 3600;
 
 if ($diff >= 6) {
-    $startDate = date('Y-m-d') . " 09:00:00";
+    $startDate = date('Y-m-d');
 } elseif ($diff <= 4) {
     $startDate = $yesterday;
 } else {
@@ -21,20 +21,17 @@ if ($diff >= 6) {
 
 if (isset($_POST['txtPassword'])) {
     $pass = $_POST['txtPassword'];
-    $query = "SELECT * FROM users WHERE id='1'";
+    $query = "SELECT * FROM users WHERE password='". $pass ."' AND can_void='Yes'";
     $result = mysqli_query($conn, $query);
 
-    if (mysqli_num_rows($result) >= 1) {
+    if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
-        if ($row['password'] !== $pass) {
-            echo "<script>alert('Incorrect Password.');</script>";
-        } else {
-            $paymentRef = $_POST['id'];
+        $paymentRef = $_POST['id'];
             mysqli_query($conn, "UPDATE orders SET status = 3 WHERE payment_reference='$paymentRef'");
             mysqli_query($conn, "UPDATE payments SET payment_method_id = '1' WHERE payment_reference='$paymentRef'");
             unset($_POST['txtPassword']);
-        }
-    } else {
+    }
+    else {
         echo "<script>alert('Incorrect Password.');</script>";
     }
 }

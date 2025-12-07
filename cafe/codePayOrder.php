@@ -92,10 +92,12 @@ $amount_received = $cash + $gcash + $card + $ent;
 $total_due       = round($total_due, 2);
 $amount_received = round($amount_received, 2);
 
+
 // ---------- VALIDATION ----------
-if ($amount_received < $total_due) {
+if ($amount_received < $total_due || $amount_received <= 0) {
     set_msg('danger', "Insufficient payment. Received: {$amount_received}, Due: {$total_due}. Transaction not saved.");
     echo "<script>window.close();</script>";
+    exit;
 }
 
 $change = max(0, round($amount_received - $total_due, 2));

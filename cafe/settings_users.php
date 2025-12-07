@@ -17,14 +17,27 @@
                 <tr>
                     <th>Name</th>    
                     <th>Username/Email</th>                
+                    <th>Can Void?</th>                
                     <th style="width:20%;">&nbsp;</th>
                 </tr>
             </thead>
             <tbody>
             <?php foreach($query_run as $a){ ?>
+
+                <?php
+                    if($a['can_void'] == 'Yes'){
+                        $yesVoid='selected';
+                        $noVoid='';
+                    }
+                    else{
+                        $yesVoid='';
+                        $noVoid='selected';
+                    }
+                ?>
                 <tr>
                 <td><?= $a['name']; ?></td>
                 <td><?= $a['email']; ?></td>                                
+                <td><?= $a['can_void']; ?></td>                                
                 <td align="right">
                 <a class="btn btn-success btn-sm" id="edit" href="<?php echo '#editUser'.$a['id']; ?>" data-toggle="modal" data-target="<?php echo '#editUser'.$a['id']; ?>">Edit</a>
                 <a class="btn btn-danger btn-sm" id="delete" href="<?php echo '#deleteUser'.$a['id']; ?>" data-toggle="modal" data-target="<?php echo '#deleteUser'.$a['id']; ?>">Delete</a>
@@ -66,7 +79,11 @@
                                                             <div class="modal-body">
                                                             Name: &nbsp; <input  class="form-control" type="text" name="txtName" value="<?= $a['name']; ?>" required><br>
                                                             Username/Email: &nbsp; <input class="form-control"  type="text" name="txtEmail"  value="<?= $a['email']; ?>" required><br>
-                                                            Password: &nbsp; <input class="form-control"  type="password" name="txtPassword"   required>
+                                                            Password: &nbsp; <input class="form-control"  type="password" name="txtPassword"><br/>
+                                                            Can Void: &nbsp; <select class="form-control form-select" name="can_void">
+                                                                    <option value="Yes" <?= $yesVoid ?>>Yes</option>
+                                                                    <option value="No" <?= $noVoid ?>>No</option>
+                                                                </select>
                                                             </div>
                                                                     <div class='modal-footer'>
                                                                     <button class='btn btn-dark btn-sm' type='button' data-dismiss='modal'>Cancel</button>
@@ -107,7 +124,11 @@
         <td>Username/Email: &nbsp; <input class="form-control"  type="text" name="txtEmail" required></td>
     </tr>
     <tr>
-        <td colspan="2">Password: &nbsp; <input class="form-control"  type="password" name="txtPassword" required></td>
+        <td>Password: &nbsp; <input class="form-control"  type="password" name="txtPassword" required></td>
+        <td>Can Void: &nbsp; <select class="form-control form-select" name="can_void">
+            <option value="Yes">Yes</option>
+            <option value="No" selected>No</option>
+        </select></td>
     </tr>
 </table>
     </div>
